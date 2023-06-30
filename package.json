@@ -1,0 +1,23 @@
+{
+  "name": "emmet-ls",
+  "version": "1.0.0",
+  "description": "A language server for Emmet",
+  "scripts": {
+    "dev": "nr build && npm link",
+    "build": "tsc"
+  },
+  "author": "José Olórtegui",
+  "license": "MIT",
+  "dependencies": {
+    "@vscode/emmet-helper": "^2.9.2",
+    "vscode-languageserver": "^8.1.0",
+    "vscode-languageserver-textdocument": "^1.0.8"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.2",
+    "typescript": "^5.1.6"
+  },
+  "bin": {
+    "emmet-ls": "./dist/index.js"
+  }
+}

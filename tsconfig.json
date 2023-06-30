@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/"
+  },
+  "extends": "@tsconfig/recommended/tsconfig.json"
+}
