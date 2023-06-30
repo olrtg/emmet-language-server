@@ -41,6 +41,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 ### Credits
 
-- @aca for the first language server (aca/emmet-ls)
-- @wassimk for bringing the microsoft/vscode-emmet-helper repo to my attention in aca/emmet-ls#55
-- Visual Studio Code for having such an amazing integration with Emmet and the easy and open package to integrate with
+- [@aca](https://github.com/aca) for the first language server ([aca/emmet-ls](https://github.com/aca/emmet-ls))
+- [@wassimk](https://github.com/wassimk) for bringing the [microsoft/vscode-emmet-helper](https://github.com/microsoft/vscode-emmet-helper) repo to my attention in aca/emmet-ls#55
+- [microsoft/vscode](https://github.com/microsoft/vscode) for having such an amazing integration with emmet and the easy and open package to integrate with
+- [emmetio/emmet](https://github.com/emmetio/emmet) for the awesome tool
