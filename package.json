@@ -1,13 +1,23 @@
 {
-  "name": "emmet-ls",
+  "name": "@olrtg/emmet-ls",
   "version": "1.0.0",
-  "description": "A language server for Emmet",
+  "description": "A language server for emmet.io",
   "scripts": {
     "dev": "nr build && npm link",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "nr build",
+    "publish": "bumpp && npm publish"
   },
-  "author": "José Olórtegui",
+  "author": "José Olórtegui <jolortegui98@gmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/olrtg/emmet-ls#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olrtg/emmet-ls.git"
+  },
+  "bugs": {
+    "url": "https://github.com/olrtg/emmet-ls/issues"
+  },
   "dependencies": {
     "@vscode/emmet-helper": "^2.9.2",
     "vscode-languageserver": "^8.1.0",
