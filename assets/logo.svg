@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="65px" height="65px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <title>Emmet Logo</title>
+    <g transform="scale(0.1625)">
+    	<ellipse cx="200" cy="200" rx="200" ry="200" fill="rgb(28,28,32)"></ellipse>
+    	<g fill="rgb(215,215,215)" id="Logo" transform="rotate(-45) translate(-162, 133) scale(0.9)">
+    	    <path id="Tip" d="M247,225 L247,190 L293,162 L247,133 L247,99 L352,162 L247,225 Z M247,225" fill="rgb(186,255,169)"></path>
+    	    <path id="Base" d="M102,312 L102,12 L207,75 L207,109 L132,64 L132,132 L181,162 L132,191 L132,259 L207,214 L207,249 L102,312 Z M102,312" fill="rgb(122,203,22)"></path>
+    	</g>
+    </g>
+</svg>
