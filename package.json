@@ -1,6 +1,6 @@
 {
   "name": "@olrtg/emmet-ls",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A language server for emmet.io",
   "scripts": {
     "dev": "nr build && npm link",
