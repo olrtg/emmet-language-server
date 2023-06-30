@@ -7,7 +7,21 @@
 
 ---
 
-### Configuration
+### Why another language server?
+
+While [aca/emmet-ls](https://github.com/aca/emmet-ls) works for what I need, there were a couple of things that annoyed me from time to time and while trying to fix one of those things (aca/emmet-ls#55) I've discovered that we can leverage [microsoft/vscode-emmet-helper](https://github.com/microsoft/vscode-emmet-helper) and make a simple language server that wraps the library to provide completions.
+
+So I decided to do that and it worked!
+
+The most important thing is that [microsoft/vscode](https://github.com/microsoft/vscode) has an excelent integration with emmet and we can have that, in all editors that implement the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/).
+
+### Setup
+
+First install:
+
+```sh
+npm i -g @olrtg/emmet-ls
+```
 
 #### Neovim (withouth nvim-lspconfig)
 
