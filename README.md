@@ -37,8 +37,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         preferences = {},
         --- @type "always" | "never" Defaults to `"always"`
         showExpandedAbbreviation = "always",
-        --- @type boolean Defaults to `false`
-        showAbbreviationSuggestions = false,
+        --- @type boolean Defaults to `true`
+        showAbbreviationSuggestions = true,
         --- @type boolean Defaults to `false`
         showSuggestionsAsSnippets = false,
         --- @type table<string, any> https://docs.emmet.io/customization/syntax-profiles/
