@@ -32,7 +32,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.lsp.start({
       cmd = { "emmet-ls", "--stdio" },
       root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1]),
-      -- More info at https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration
       init_options = {
         --- @type table<string, any> https://docs.emmet.io/customization/preferences/
         preferences = {},
