@@ -1,5 +1,5 @@
 {
-  "name": "@olrtg/emmet-ls",
+  "name": "@olrtg/emmet-language-server",
   "version": "1.0.2",
   "description": "A language server for emmet.io",
   "scripts": {
@@ -10,13 +10,13 @@
   },
   "author": "José Olórtegui <jolortegui98@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/olrtg/emmet-ls#readme",
+  "homepage": "https://github.com/olrtg/emmet-language-server#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/olrtg/emmet-ls.git"
+    "url": "git+https://github.com/olrtg/emmet-language-server.git"
   },
   "bugs": {
-    "url": "https://github.com/olrtg/emmet-ls/issues"
+    "url": "https://github.com/olrtg/emmet-language-server/issues"
   },
   "dependencies": {
     "@vscode/emmet-helper": "^2.9.2",
@@ -28,6 +28,6 @@
     "typescript": "^5.1.6"
   },
   "bin": {
-    "emmet-ls": "./dist/index.js"
+    "emmet-language-server": "./dist/index.js"
   }
 }

@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD033 MD041 -->
 <div align="center">
     <img src="./assets/logo.svg">
-    <h3>emmet-ls</h3>
+    <h3>emmet-language-server</h3>
     <p>A language server for <a href="https://emmet.io/" target="_blank">emmet.io</a></p>
 </div>
 
@@ -17,10 +17,14 @@ The most important thing is that [microsoft/vscode](https://github.com/microsoft
 
 ### Setup
 
+> **Warning**
+>
+> I've decided to rename the package to `@olrtg/emmet-language-server` for potential mason/lspconfig integration. Please remove the old `@olrtg/emmet-ls` package and migrate to this new one.
+
 First install:
 
 ```sh
-npm i -g @olrtg/emmet-ls
+npm i -g @olrtg/emmet-language-server
 ```
 
 #### Neovim (withouth nvim-lspconfig)
@@ -30,7 +34,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = "astro,css,eruby,html,htmldjango,javascriptreact,less,pug,sass,scss,svelte,typescriptreact,vue",
   callback = function()
     vim.lsp.start({
-      cmd = { "emmet-ls", "--stdio" },
+      cmd = { "emmet-language-server", "--stdio" },
       root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1]),
       init_options = {
         --- @type table<string, any> https://docs.emmet.io/customization/preferences/
