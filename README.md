@@ -13,7 +13,7 @@ While [aca/emmet-ls](https://github.com/aca/emmet-ls) works for what I need, the
 
 So I decided to do that and it worked!
 
-The most important thing is that [microsoft/vscode](https://github.com/microsoft/vscode) has an excelent integration with emmet and we can have that, in all editors that implement the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/).
+The most important thing is that [microsoft/vscode](https://github.com/microsoft/vscode) has an excellent integration with emmet and we can have that, in all editors that implement the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/).
 
 ### Setup
 
@@ -27,7 +27,7 @@ First install:
 npm i -g @olrtg/emmet-language-server
 ```
 
-#### Neovim (withouth nvim-lspconfig)
+#### Neovim (without nvim-lspconfig)
 
 ```lua
 vim.api.nvim_create_autocmd({ "FileType" }, {
