@@ -39,7 +39,7 @@ connection.onCompletion(textDocumentPosition => {
   }
 
   const languageId = document.languageId
-  const syntax = getEmmetMode(languageId)
+  const syntax = getEmmetMode(languageId) ?? 'html'
 
   if (!syntax) {
     return
