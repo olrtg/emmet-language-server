@@ -21,13 +21,47 @@ The most important thing is that [microsoft/vscode](https://github.com/microsoft
 >
 > I've decided to rename the package to `@olrtg/emmet-language-server` for potential mason/lspconfig integration. Please remove the old `@olrtg/emmet-ls` package and migrate to this new one.
 
-First install:
+**Using npm:**
 
 ```sh
 npm i -g @olrtg/emmet-language-server
 ```
 
-#### Neovim (without nvim-lspconfig)
+**Using mason.nvim:**
+
+```sh
+:MasonInstall emmet-language-server
+```
+
+### Neovim
+
+**With nvim-lspconfig:**
+
+Remember that if you don't need to support a new filetype or change the default settings of the language server you don't need to pass a table to the `setup` function (like this: `lspconfig.emmet_language_server.setup()`.
+
+```lua
+lspconfig.emmet_language_server.setup({
+  filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
+  init_options = {
+    --- @type table<string, any> https://docs.emmet.io/customization/preferences/
+    preferences = {},
+    --- @type "always" | "never" defaults to `"always"`
+    showexpandedabbreviation = "always",
+    --- @type boolean defaults to `true`
+    showabbreviationsuggestions = true,
+    --- @type boolean defaults to `false`
+    showsuggestionsassnippets = false,
+    --- @type table<string, any> https://docs.emmet.io/customization/syntax-profiles/
+    syntaxprofiles = {},
+    --- @type table<string, string> https://docs.emmet.io/customization/snippets/#variables
+    variables = {},
+    --- @type string[]
+    excludelanguages = {},
+  },
+})
+```
+
+**Without nvim-lspconfig:**
 
 ```lua
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -39,18 +73,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       init_options = {
         --- @type table<string, any> https://docs.emmet.io/customization/preferences/
         preferences = {},
-        --- @type "always" | "never" Defaults to `"always"`
-        showExpandedAbbreviation = "always",
-        --- @type boolean Defaults to `true`
-        showAbbreviationSuggestions = true,
-        --- @type boolean Defaults to `false`
-        showSuggestionsAsSnippets = false,
+        --- @type "always" | "never" defaults to `"always"`
+        showexpandedabbreviation = "always",
+        --- @type boolean defaults to `true`
+        showabbreviationsuggestions = true,
+        --- @type boolean defaults to `false`
+        showsuggestionsassnippets = false,
         --- @type table<string, any> https://docs.emmet.io/customization/syntax-profiles/
-        syntaxProfiles = {},
+        syntaxprofiles = {},
         --- @type table<string, string> https://docs.emmet.io/customization/snippets/#variables
         variables = {},
         --- @type string[]
-        excludeLanguages = {},
+        excludelanguages = {},
       },
     })
   end,
