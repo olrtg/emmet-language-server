@@ -19,7 +19,7 @@ The most important thing is that [microsoft/vscode](https://github.com/microsoft
 
 > **Warning**
 >
-> I've decided to rename the package to `@olrtg/emmet-language-server` for potential mason/lspconfig integration. Please remove the old `@olrtg/emmet-ls` package and migrate to this new one.
+> I've decided to rename the package to `@olrtg/emmet-language-server` for mason/lspconfig integration. Please remove the old `@olrtg/emmet-ls` package and migrate to this new one.
 
 **Using npm:**
 
