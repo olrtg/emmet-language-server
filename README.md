@@ -37,7 +37,7 @@ npm i -g @olrtg/emmet-language-server
 
 **With nvim-lspconfig:**
 
-Remember that if you don't need to support a new filetype or change the default settings of the language server you don't need to pass a table to the `setup` function (like this: `lspconfig.emmet_language_server.setup()`.
+Remember that if you don't need to support a new filetype or change the default settings of the language server you don't need to pass a table to the `setup` function (like this: `lspconfig.emmet_language_server.setup({})`.
 
 ```lua
 lspconfig.emmet_language_server.setup({
