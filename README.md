@@ -91,6 +91,16 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 ```
 
+### Helix Editor
+
+Install normally with npm/pnpm, then add the following to ```languages.toml```:
+
+```toml
+[[language]]
+name = "html"
+language-server = { command = "emmet-language-server", args = ["--stdio"] }
+```
+
 ### Credits
 
 - [@aca](https://github.com/aca) for the first language server ([aca/emmet-ls](https://github.com/aca/emmet-ls))
