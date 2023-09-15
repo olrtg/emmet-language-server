@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 ### Helix Editor
 
-Install normally with npm/pnpm, then add the following to ```languages.toml```:
+Install normally with npm/pnpm, then add the following to `languages.toml`:
 
 ```toml
 [[language]]
