@@ -11,6 +11,7 @@ import {
   VSCodeEmmetConfig,
   doComplete,
   getEmmetMode,
+  expandAbbreviation,
 } from '@vscode/emmet-helper'
 
 const connection = createConnection(ProposedFeatures.all)
@@ -107,6 +108,16 @@ connection.onCompletion(textDocumentPosition => {
 
   return doComplete(document, position, syntax, globalConfig)
 })
+
+connection.onRequest(
+  'emmet/expandAbbreviation',
+  (params: {
+    abbreviation: string
+    options: Parameters<typeof expandAbbreviation>[1]
+  }) => {
+    return expandAbbreviation(params.abbreviation, params.options)
+  },
+)
 
 documents.listen(connection)
 connection.listen()
