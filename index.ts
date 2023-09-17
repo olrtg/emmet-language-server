@@ -41,6 +41,7 @@ connection.onInitialize(params => {
           ']', // https://docs.emmet.io/abbreviations/syntax/#custom-attributes
           '@', // https://docs.emmet.io/abbreviations/syntax/#changing-numbering-base-and-direction
           '}', // https://docs.emmet.io/abbreviations/syntax/#text
+          '/', // for self-closing tags, eg. `div/` should expand to `<div />|`
 
           // NOTE: For cases where completion is not triggered by typing a
           // single character
