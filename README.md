@@ -47,18 +47,18 @@ lspconfig.emmet_language_server.setup({
   init_options = {
     --- @type table<string, any> https://docs.emmet.io/customization/preferences/
     preferences = {},
-    --- @type "always" | "never" defaults to `"always"`
-    showexpandedabbreviation = "always",
-    --- @type boolean defaults to `true`
-    showabbreviationsuggestions = true,
-    --- @type boolean defaults to `false`
-    showsuggestionsassnippets = false,
+    --- @type "always" | "never" Defaults to `"always"`
+    showExpandedAbbreviation = "always",
+    --- @type boolean Defaults to `true`
+    showAbbreviationSuggestions = true,
+    --- @type boolean Defaults to `false`
+    showSuggestionsAsSnippets = false,
     --- @type table<string, any> https://docs.emmet.io/customization/syntax-profiles/
-    syntaxprofiles = {},
+    syntaxProfiles = {},
     --- @type table<string, string> https://docs.emmet.io/customization/snippets/#variables
     variables = {},
     --- @type string[]
-    excludelanguages = {},
+    excludeLanguages = {},
   },
 })
 ```
@@ -75,18 +75,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       init_options = {
         --- @type table<string, any> https://docs.emmet.io/customization/preferences/
         preferences = {},
-        --- @type "always" | "never" defaults to `"always"`
-        showexpandedabbreviation = "always",
-        --- @type boolean defaults to `true`
-        showabbreviationsuggestions = true,
-        --- @type boolean defaults to `false`
-        showsuggestionsassnippets = false,
+        --- @type "always" | "never" Defaults to `"always"`
+        showExpandedAbbreviation = "always",
+        --- @type boolean Defaults to `true`
+        showAbbreviationSuggestions = true,
+        --- @type boolean Defaults to `false`
+        showSuggestionsAsSnippets = false,
         --- @type table<string, any> https://docs.emmet.io/customization/syntax-profiles/
-        syntaxprofiles = {},
+        syntaxProfiles = {},
         --- @type table<string, string> https://docs.emmet.io/customization/snippets/#variables
         variables = {},
         --- @type string[]
-        excludelanguages = {},
+        excludeLanguages = {},
       },
     })
   end,
