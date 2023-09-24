@@ -11,6 +11,7 @@ import {
   VSCodeEmmetConfig,
   doComplete,
   getEmmetMode,
+  expandAbbreviation,
 } from '@vscode/emmet-helper'
 
 const connection = createConnection(ProposedFeatures.all)
@@ -40,6 +41,7 @@ connection.onInitialize(params => {
           ']', // https://docs.emmet.io/abbreviations/syntax/#custom-attributes
           '@', // https://docs.emmet.io/abbreviations/syntax/#changing-numbering-base-and-direction
           '}', // https://docs.emmet.io/abbreviations/syntax/#text
+          '/', // for self-closing tags, eg. `div/` should expand to `<div />|`
 
           // NOTE: For cases where completion is not triggered by typing a
           // single character
@@ -107,6 +109,16 @@ connection.onCompletion(textDocumentPosition => {
 
   return doComplete(document, position, syntax, globalConfig)
 })
+
+connection.onRequest(
+  'emmet/expandAbbreviation',
+  (params: {
+    abbreviation: string
+    options: Parameters<typeof expandAbbreviation>[1]
+  }) => {
+    return expandAbbreviation(params.abbreviation, params.options)
+  },
+)
 
 documents.listen(connection)
 connection.listen()
