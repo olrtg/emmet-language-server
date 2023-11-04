@@ -49,6 +49,8 @@ lspconfig.emmet_language_server.setup({
   init_options = {
     --- @type string[]
     excludeLanguages = {},
+    --- @type string[]
+    extensionsPath = {},
     --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
     preferences = {},
     --- @type boolean Defaults to `true`
@@ -79,6 +81,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       init_options = {
         --- @type string[]
         excludeLanguages = {},
+        --- @type string[]
+        extensionsPath = {},
         --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
         preferences = {},
         --- @type boolean Defaults to `true`
@@ -97,9 +101,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 ```
 
-### Helix Editor
+### Helix
 
-Install normally with npm/pnpm, then add the following to `languages.toml`:
+Install normally with npm (or your favourite package manager), then add the following to `languages.toml`:
 
 ```toml
 [[language]]

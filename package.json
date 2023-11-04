@@ -3,7 +3,7 @@
   "version": "2.3.0",
   "description": "A language server for emmet.io",
   "scripts": {
-    "dev": "nr build && npm link",
+    "dev": "nodemon --watch index.ts --exec \"nr build && npm link\"",
     "build": "tsc",
     "prepublishOnly": "nr build",
     "publish": "bumpp && npm publish"
@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.2",
+    "@types/node": "^20.8.6",
+    "nodemon": "^3.0.1",
     "typescript": "^5.1.6"
   },
   "bin": {
