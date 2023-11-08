@@ -106,9 +106,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 Install normally with npm (or your favourite package manager), then add the following to `languages.toml`:
 
 ```toml
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
+
 [[language]]
 name = "html"
-language-server = { command = "emmet-language-server", args = ["--stdio"] }
+roots = [".git"]
+language-servers = ["emmet-lsp"]
 ```
 
 ### Credits
