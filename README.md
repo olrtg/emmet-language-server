@@ -43,7 +43,7 @@ Remember that if you don't need to support a new filetype or change the default 
 
 ```lua
 lspconfig.emmet_language_server.setup({
-  filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
+  filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
   -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
   -- **Note:** only the options listed in the table are supported.
   init_options = {
@@ -71,7 +71,7 @@ lspconfig.emmet_language_server.setup({
 
 ```lua
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = "astro,css,eruby,html,htmldjango,javascriptreact,less,pug,sass,scss,svelte,typescriptreact,vue",
+  pattern = "css,eruby,html,htmldjango,javascriptreact,less,pug,sass,scss,typescriptreact",
   callback = function()
     vim.lsp.start({
       cmd = { "emmet-language-server", "--stdio" },
