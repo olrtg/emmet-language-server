@@ -17,7 +17,7 @@ The most important thing is that [microsoft/vscode](https://github.com/microsoft
 
 ### Setup
 
-> **Warning**
+> [!WARNING]
 > I've decided to rename the package to `@olrtg/emmet-language-server` for mason/lspconfig integration. Please remove the old `@olrtg/emmet-ls` package and migrate to this new one.
 
 **Using npm:**
@@ -34,7 +34,7 @@ npm i -g @olrtg/emmet-language-server
 
 ### Neovim
 
-> **Note**
+> [!NOTE]
 > Want deeper integration (eg. wrap with abbreviation)? Check out [nvim-emmet](https://github.com/olrtg/nvim-emmet).
 
 **With nvim-lspconfig:**
