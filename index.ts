@@ -168,8 +168,9 @@ connection.onCompletion(textDocumentPosition => {
   const editorLanguage = document.languageId
   const emmetLanguage = getEmmetMode(editorLanguage) ?? 'html'
 
-  const syntax = !!globalConfig.includeLanguages?.[emmetLanguage]
-    ? globalConfig.includeLanguages[emmetLanguage]
+  const syntax = !!globalConfig.includeLanguages?.[editorLanguage]
+    ? getEmmetMode(globalConfig.includeLanguages[editorLanguage]) ??
+      emmetLanguage
     : emmetLanguage
 
   const position = textDocumentPosition.position
