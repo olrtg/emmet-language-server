@@ -25,6 +25,7 @@ const documents = new TextDocuments(TextDocument)
 
 interface GlobalConfig extends VSCodeEmmetConfig {
   extensionsPath?: string[]
+  includeLanguages?: Record<string, string>
 }
 
 let globalConfig: GlobalConfig = {}
@@ -164,12 +165,12 @@ connection.onCompletion(textDocumentPosition => {
     return
   }
 
-  const languageId = document.languageId
-  const syntax = getEmmetMode(languageId) ?? 'html'
+  const editorLanguage = document.languageId
+  const emmetLanguage = getEmmetMode(editorLanguage) ?? 'html'
 
-  if (!syntax) {
-    return
-  }
+  const syntax = !!globalConfig.includeLanguages?.[emmetLanguage]
+    ? globalConfig.includeLanguages[emmetLanguage]
+    : emmetLanguage
 
   const position = textDocumentPosition.position
 
