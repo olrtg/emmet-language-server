@@ -47,6 +47,8 @@ lspconfig.emmet_language_server.setup({
   -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
   -- **Note:** only the options listed in the table are supported.
   init_options = {
+    ---@type table<string, string>
+    includeLanguages = {},
     --- @type string[]
     excludeLanguages = {},
     --- @type string[]
@@ -79,6 +81,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
       -- **Note:** only the options listed in the table are supported.
       init_options = {
+        ---@type table<string, string>
+        includeLanguages = {},
         --- @type string[]
         excludeLanguages = {},
         --- @type string[]
