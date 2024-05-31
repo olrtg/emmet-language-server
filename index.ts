@@ -182,9 +182,20 @@ connection.onRequest(
   'emmet/expandAbbreviation',
   (params: {
     abbreviation: string
+    language: string
     options: Parameters<typeof expandAbbreviation>[1]
   }) => {
-    return expandAbbreviation(params.abbreviation, params.options)
+    const emmetLanguage = getEmmetMode(params.language) ?? 'html'
+
+    const syntax = !!globalConfig.includeLanguages?.[params.language]
+      ? getEmmetMode(globalConfig.includeLanguages[params.language]) ??
+        emmetLanguage
+      : emmetLanguage
+
+    return expandAbbreviation(params.abbreviation, {
+      syntax,
+      ...params.options,
+    })
   },
 )
 
