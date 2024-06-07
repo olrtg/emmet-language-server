@@ -5,6 +5,8 @@
     <p>A language server for <a href="https://emmet.io/" target="_blank">emmet.io</a></p>
 </div>
 
+![Promo gif](./assets/promo.gif)
+
 ---
 
 ### Why another language server?
