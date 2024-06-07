@@ -19,9 +19,6 @@ The most important thing is that [microsoft/vscode](https://github.com/microsoft
 
 ### Setup
 
-> [!WARNING]
-> I've decided to rename the package to `@olrtg/emmet-language-server` for mason/lspconfig integration. Please remove the old `@olrtg/emmet-ls` package and migrate to this new one.
-
 **Using npm:**
 
 ```sh
@@ -41,7 +38,7 @@ npm i -g @olrtg/emmet-language-server
 
 **With nvim-lspconfig:**
 
-Remember that if you don't need to support a new filetype or change the default settings of the language server you don't need to pass a table to the `setup` function (like this: `lspconfig.emmet_language_server.setup({})`).
+Remember that if you don't need to support a new filetype or change the default settings of the language server you just need to pass an empty table to the `setup` function (like this: `lspconfig.emmet_language_server.setup({})`).
 
 ```lua
 lspconfig.emmet_language_server.setup({
