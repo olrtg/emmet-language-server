@@ -76,11 +76,11 @@ const fileService: FileService = {
   },
 }
 
-connection.onInitialize(params => {
+connection.onInitialize((params) => {
   globalConfig = params.initializationOptions || {}
 
-  if (globalConfig.extensionsPath && globalConfig.extensionsPath.length) {
-    const absolutePaths = globalConfig.extensionsPath.map(extensionPath =>
+  if (globalConfig.extensionsPath?.length) {
+    const absolutePaths = globalConfig.extensionsPath.map((extensionPath) =>
       path.isAbsolute(extensionPath)
         ? extensionPath
         : path.resolve(extensionPath),
@@ -112,53 +112,19 @@ connection.onInitialize(params => {
 
           // NOTE: For cases where completion is not triggered by typing a
           // single character
-          'a',
-          'b',
-          'c',
-          'd',
-          'e',
-          'f',
-          'g',
-          'h',
-          'i',
-          'j',
-          'k',
-          'l',
-          'm',
-          'n',
-          'o',
-          'p',
-          'q',
-          'r',
-          's',
-          't',
-          'u',
-          'v',
-          'w',
-          'x',
-          'y',
-          'z',
+          ...'abcdefghijklmnopqrstuvwxyz',
 
           // NOTE: For cases where completion is not triggered by typing a
           // single character or because numbers cannot be used to trigger
           // completion
-          '0',
-          '1',
-          '2',
-          '3',
-          '4',
-          '5',
-          '6',
-          '7',
-          '8',
-          '9',
+          ...'0123456789',
         ],
       },
     },
   }
 })
 
-connection.onCompletion(textDocumentPosition => {
+connection.onCompletion((textDocumentPosition) => {
   const document = documents.get(textDocumentPosition.textDocument.uri)
 
   if (!document) {
@@ -169,8 +135,8 @@ connection.onCompletion(textDocumentPosition => {
   const emmetLanguage = getEmmetMode(editorLanguage) ?? 'html'
 
   const syntax = !!globalConfig.includeLanguages?.[editorLanguage]
-    ? getEmmetMode(globalConfig.includeLanguages[editorLanguage]) ??
-      emmetLanguage
+    ? (getEmmetMode(globalConfig.includeLanguages[editorLanguage]) ??
+      emmetLanguage)
     : emmetLanguage
 
   const position = textDocumentPosition.position
@@ -188,8 +154,8 @@ connection.onRequest(
     const emmetLanguage = getEmmetMode(params.language) ?? 'html'
 
     const syntax = !!globalConfig.includeLanguages?.[params.language]
-      ? getEmmetMode(globalConfig.includeLanguages[params.language]) ??
-        emmetLanguage
+      ? (getEmmetMode(globalConfig.includeLanguages[params.language]) ??
+        emmetLanguage)
       : emmetLanguage
 
     return expandAbbreviation(params.abbreviation, {
