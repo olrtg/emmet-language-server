@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import match from '@emmetio/html-matcher'
 import {
   FileType,
   doComplete,
@@ -14,6 +15,7 @@ import path from 'path'
 import util from 'util'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import {
+  Position,
   ProposedFeatures,
   TextDocumentSyncKind,
   TextDocuments,
@@ -124,22 +126,44 @@ connection.onInitialize((params) => {
   }
 })
 
+function isInsideStyleTag(document: TextDocument, position: Position) {
+  const text = document.getText()
+  const offset = document.offsetAt(position)
+
+  const matchedTag = match(text, offset)
+
+  if (!matchedTag) return false
+
+  return matchedTag.name === 'style'
+}
+
+function getSyntax(document: TextDocument, position: Position) {
+  const editorLanguage = document.languageId
+  const emmetLanguage = isInsideStyleTag(document, position)  
+    ? 'css'
+    : (getEmmetMode(editorLanguage) ?? 'html')
+
+  // If user has configured a mapping for the current language, use that.
+  // Eg. { "elixir": "html" }
+  if (globalConfig.includeLanguages?.[editorLanguage]) {
+    // Fallback to the default language since to protect us against the user
+    // mapping to an invalid language
+    return (
+      getEmmetMode(globalConfig.includeLanguages[editorLanguage]) ??
+      emmetLanguage
+    )
+  }
+
+  return emmetLanguage
+}
+
 connection.onCompletion((textDocumentPosition) => {
   const document = documents.get(textDocumentPosition.textDocument.uri)
 
-  if (!document) {
-    return
-  }
-
-  const editorLanguage = document.languageId
-  const emmetLanguage = getEmmetMode(editorLanguage) ?? 'html'
-
-  const syntax = !!globalConfig.includeLanguages?.[editorLanguage]
-    ? (getEmmetMode(globalConfig.includeLanguages[editorLanguage]) ??
-      emmetLanguage)
-    : emmetLanguage
+  if (!document) return
 
   const position = textDocumentPosition.position
+  const syntax = getSyntax(document, position)
 
   return doComplete(document, position, syntax, globalConfig)
 })
