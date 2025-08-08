@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import match from '@emmetio/html-matcher'
+import match, { MatchedTag } from '@emmetio/html-matcher'
 import {
   FileType,
   doComplete,
@@ -15,7 +15,6 @@ import path from 'path'
 import util from 'util'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import {
-  Position,
   ProposedFeatures,
   TextDocumentSyncKind,
   TextDocuments,
@@ -126,20 +125,22 @@ connection.onInitialize((params) => {
   }
 })
 
-function isInsideStyleTag(document: TextDocument, position: Position) {
-  const text = document.getText()
-  const offset = document.offsetAt(position)
-
-  const matchedTag = match(text, offset)
-
-  if (!matchedTag) return false
-
-  return matchedTag.name === 'style'
+function inRange(offset: number, [start, end]: [number, number]) {
+  return offset > start && offset < end
 }
 
-function getSyntax(document: TextDocument, position: Position) {
-  const editorLanguage = document.languageId
-  const emmetLanguage = isInsideStyleTag(document, position)  
+function isInsideTag(matchedTag: MatchedTag | null, offset: number): boolean {
+  if (!matchedTag) return false
+  if (inRange(offset, matchedTag.open)) return true
+  return matchedTag.close ? inRange(offset, matchedTag.close) : false
+}
+
+function isInsideStyleTag(matchedTag: MatchedTag | null): boolean {
+  return matchedTag?.name === 'style'
+}
+
+function getSyntax(editorLanguage: string, matchedTag: MatchedTag | null) {
+  const emmetLanguage = isInsideStyleTag(matchedTag)
     ? 'css'
     : (getEmmetMode(editorLanguage) ?? 'html')
 
@@ -163,7 +164,13 @@ connection.onCompletion((textDocumentPosition) => {
   if (!document) return
 
   const position = textDocumentPosition.position
-  const syntax = getSyntax(document, position)
+  const text = document.getText()
+  const offset = document.offsetAt(position)
+  const matchedTag = match(text, offset)
+
+  if (isInsideTag(matchedTag, offset)) return
+
+  const syntax = getSyntax(document.languageId, matchedTag)
 
   return doComplete(document, position, syntax, globalConfig)
 })
