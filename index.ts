@@ -125,25 +125,18 @@ connection.onInitialize((params) => {
   }
 })
 
-function isInsideStyleTag(matchedTag: MatchedTag | null): boolean {
-  return matchedTag?.name === 'style'
+function inRange(offset: number, [start, end]: [number, number]) {
+  return offset > start && offset < end
 }
 
-function isInsideTag(
-  matchedTag: MatchedTag | null,
-  offset: number,
-): boolean {
+function isInsideTag(matchedTag: MatchedTag | null, offset: number): boolean {
   if (!matchedTag) return false
+  if (inRange(offset, matchedTag.open)) return true
+  return matchedTag.close ? inRange(offset, matchedTag.close) : false
+}
 
-  if (offset > matchedTag.open[0] && offset < matchedTag.open[1]) {
-    return true
-  }
-
-  return (
-    !!matchedTag.close &&
-    offset > matchedTag.close[0] &&
-    offset < matchedTag.close[1]
-  )
+function isInsideStyleTag(matchedTag: MatchedTag | null): boolean {
+  return matchedTag?.name === 'style'
 }
 
 function getSyntax(editorLanguage: string, matchedTag: MatchedTag | null) {
