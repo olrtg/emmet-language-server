@@ -113,6 +113,11 @@ Install normally with npm (or your favourite package manager), then add the foll
 command = "emmet-language-server"
 args = ["--stdio"]
 
+[language-server.emmet-lsp.config]
+# same configuration options as nvim above
+includeLanguages = {}
+# etc.
+
 [[language]]
 name = "html"
 roots = [".git"]
