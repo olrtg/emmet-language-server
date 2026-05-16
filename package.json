@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@emmetio/html-matcher": "^1.3.0",
+    "@emmetio/math-expression": "^1.0.4",
     "@vscode/emmet-helper": "^2.11.0",
     "bumpp": "^9.8.1",
     "htmlparser2": "^10.0.0",
