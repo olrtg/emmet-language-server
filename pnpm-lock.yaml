@@ -11,6 +11,9 @@ importers:
       '@emmetio/html-matcher':
         specifier: ^1.3.0
         version: 1.3.0
+      '@emmetio/math-expression':
+        specifier: ^1.0.4
+        version: 1.0.5
       '@vscode/emmet-helper':
         specifier: ^2.11.0
         version: 2.11.0
@@ -50,6 +53,9 @@ packages:
 
   '@emmetio/html-matcher@1.3.0':
     resolution: {integrity: sha512-NTbsvppE5eVyBMuyGfVu2CRrLvo7J4YHb6t9sBFLyY03WYhXET37qA4zOYUjBWFCRHO7pS1B9khERtY0f5JXPQ==}
+
+  '@emmetio/math-expression@1.0.5':
+    resolution: {integrity: sha512-qf5SXD/ViS04rXSeDg9CRGM10xLC9dVaKIbMHrrwxYr5LNB/C0rOfokhGSBwnVQKcidLmdRJeNWH1V1tppZ84Q==}
 
   '@emmetio/scanner@1.0.4':
     resolution: {integrity: sha512-IqRuJtQff7YHHBk4G8YZ45uB9BaAGcwQeVzgj/zj8/UdOhtQpEIupUhSk8dys6spFIWVZVeK20CzGEnqR5SbqA==}
@@ -496,6 +502,10 @@ snapshots:
       '@emmetio/scanner': 1.0.4
 
   '@emmetio/html-matcher@1.3.0':
+    dependencies:
+      '@emmetio/scanner': 1.0.4
+
+  '@emmetio/math-expression@1.0.5':
     dependencies:
       '@emmetio/scanner': 1.0.4
 

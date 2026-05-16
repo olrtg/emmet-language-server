@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import match, { MatchedTag } from '@emmetio/html-matcher'
+import evaluate from '@emmetio/math-expression'
 import {
   FileType,
   doComplete,
@@ -15,9 +16,12 @@ import path from 'path'
 import util from 'util'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import {
+  CodeAction,
+  CodeActionKind,
   ProposedFeatures,
   TextDocumentSyncKind,
   TextDocuments,
+  TextEdit,
   createConnection,
 } from 'vscode-languageserver/node'
 
@@ -121,6 +125,9 @@ connection.onInitialize((params) => {
           ...'0123456789',
         ],
       },
+      codeActionProvider: {
+        codeActionKinds: [CodeActionKind.Refactor],
+      },
     },
   }
 })
@@ -195,6 +202,42 @@ connection.onRequest(
     })
   },
 )
+
+connection.onCodeAction((params): CodeAction[] => {
+  const { range, textDocument } = params
+  if (range.start.line !== range.end.line) return []
+  if (range.start.character === range.end.character) return []
+
+  const document = documents.get(textDocument.uri)
+  if (!document) return []
+
+  const selected = document.getText(range).trim()
+  if (!selected) return []
+
+  let value: number | null
+  try {
+    value = evaluate(selected)
+  } catch {
+    return []
+  }
+  if (value === null || !Number.isFinite(value)) return []
+
+  const formatted = Number.isInteger(value)
+    ? String(value)
+    : String(+value.toFixed(4))
+
+  return [
+    {
+      title: 'Evaluate math expression',
+      kind: CodeActionKind.Refactor,
+      edit: {
+        changes: {
+          [textDocument.uri]: [TextEdit.replace(range, formatted)],
+        },
+      },
+    },
+  ]
+})
 
 documents.listen(connection)
 connection.listen()
