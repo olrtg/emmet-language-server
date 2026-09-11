@@ -158,10 +158,15 @@ function getSyntax(editorLanguage: string, matchedTag: MatchedTag | null) {
   return emmetLanguage
 }
 
+function isLanguageExcluded(editorLanguage: string) {
+  return globalConfig.excludeLanguages?.includes(editorLanguage) ?? false
+}
+
 connection.onCompletion((textDocumentPosition) => {
   const document = documents.get(textDocumentPosition.textDocument.uri)
 
   if (!document) return
+  if (isLanguageExcluded(document.languageId)) return
 
   const position = textDocumentPosition.position
   const text = document.getText()
@@ -182,9 +187,11 @@ connection.onRequest(
     language: string
     options: Parameters<typeof expandAbbreviation>[1]
   }) => {
+    if (isLanguageExcluded(params.language)) return
+
     const emmetLanguage = getEmmetMode(params.language) ?? 'html'
 
-    const syntax = !!globalConfig.includeLanguages?.[params.language]
+    const syntax = globalConfig.includeLanguages?.[params.language]
       ? (getEmmetMode(globalConfig.includeLanguages[params.language]) ??
         emmetLanguage)
       : emmetLanguage
